@@ -29,7 +29,6 @@ else
     exit 1
 fi
 }
-
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
 VALIDATE $? "copyieng mongodb repo"
 
@@ -42,8 +41,8 @@ VALIDATE $? "enable mongodb"
 systemctl start mongod
 VALIDATE $? "starting mongodb" &>>$log_file
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
-VALIDATE $? "editing mongodb for remote connection" &>>$log_file
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>>$log_file
+VALIDATE $? "editing mongodb for remote connection" 
 
-systemctl restart mongod
-VALIDATE $? "Restarting  Mongodb" &>>$log_file
+systemctl restart mongod &>>$log_file
+VALIDATE $? "Restarting  Mongodb" 
