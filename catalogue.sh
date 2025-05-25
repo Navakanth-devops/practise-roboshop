@@ -42,8 +42,8 @@ VALIDATE $? "Installing nodejs"
 
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
 
-mkdir /app &>>$log_file
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+mkdir -p /app &>>$log_file
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$log_file
 
 cd /app &>>$log_file
 unzip /tmp/catalogue.zip &>>$log_file
@@ -51,7 +51,7 @@ unzip /tmp/catalogue.zip &>>$log_file
 npm install &>>$log_file
 VALIDATE $? "installing dependies"
 
-CP $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service &>>$log_file
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service &>>$log_file
 VALIDATE $? "copying catalogue services"
 
 systemctl daemon-reload &>>$log_file
