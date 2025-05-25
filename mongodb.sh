@@ -21,12 +21,13 @@ else
 fi
 
 VALIDATE(){
-    if [ $1 -eq 0 ]
-    then
+if [ $1 -eq 0 ]
+then
     echo -e "$2 is $G success $N " | tee -a $log_file
-    else
+else
     echo -e "$2 is $R Failure $N " | tee -a $log_file
-    fi
+    exit 1
+fi
 }
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
@@ -35,7 +36,9 @@ VALIDATE $? "copyieng mongodb repo"
 dnf install mongodb-org -y &>>$log_file
 VALIDATE $? "installing mongo db"
 
-systemctl enable mongod
+systemctl enable mongod &>>$log_file
+VALIDATE $? "enable mongodb"
+
 systemctl start mongod
 VALIDATE $? "starting mongodb" &>>$log_file
 
