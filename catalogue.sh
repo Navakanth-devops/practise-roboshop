@@ -22,7 +22,7 @@ else
 fi
 
 VALIDATE(){
-    if [ $1 == 0 ]
+    if [$1 == 0]
     then
     echo -e "$2 is $G success $N " | tee -a $log_file
     else
@@ -30,6 +30,7 @@ VALIDATE(){
     exit 1
     fi
 }
+
 dnf module disable nodejs -y  &>>$log_file
 VALIDATE $? "Disabling exisisting nodejs"
 
@@ -37,7 +38,7 @@ dnf module enable nodejs:20 -y &>>$log_file
 VALIDATE $? "Enabling nodejs"
 
 dnf install nodejs -y &>>$log_file
-VALIDATE #? "Installing nodejs"
+VALIDATE $? "Installing nodejs"
 
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
 
