@@ -42,15 +42,17 @@ VALIDATE $? "Installing nodejs"
 
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$log_file
 
-mkdir -p /app 
+mkdir -p /home/Navakanth/app
+ 
 VALIDATE $? "Creating app directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$log_file
+curl -o /home/Navakanth/tmp
+/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$log_file
 
-cd /app 
-unzip /tmp/catalogue.zip &>>$log_file
+cd /home/Navakanth/app
+ 
+unzip /home/Navakanth/tmp/catalogue.zip &>>$log_file
 VALIDATE $? "unzipping file"
-
 
 npm install &>>$log_file
 VALIDATE $? "installing dependies"
