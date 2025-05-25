@@ -22,13 +22,13 @@ else
 fi
 
 VALIDATE(){
-if [ $1 = 0 ]
-then
+    if [ $1 -eq 0 ]
+    then
     echo -e "$2 is $G success $N " | tee -a $log_file
-else
+    else
     echo -e "$2 is $R Failure $N " | tee -a $log_file
     exit 1
-fi
+    fi
 }
 dnf module disable nodejs -y  &>>$log_file
 VALIDATE $? "Disabling exisisting nodejs"
