@@ -44,6 +44,7 @@ useradd --system --home /app --shell /sbin/nologin --comment "roboshop system us
 
 mkdir -p /app 
 VALIDATE $? "Creating app directory"
+
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$log_file
 
 cd /app 
