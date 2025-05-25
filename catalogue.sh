@@ -69,4 +69,4 @@ cp /$SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y &>>$log_file
 VALIDATE $? "installing mongodb"
 
-mongosh --host mongodb.nanidevops.site </app/db/master-data.js &>>$log_file
+mongosh --host mongodb.nanidevops.site </home/Navakanth/app/db/master-data.js &>>$log_file
